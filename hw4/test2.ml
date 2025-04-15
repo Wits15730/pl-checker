@@ -23,9 +23,9 @@ module TestEx2: TestEx =
           ]
         )
       ; SHOP
-        ( [ (A, [Except (Same B, [1])])
-          ; (B, [Except (Same A, [2])])
-          ; (C, [Except (Same B, [3])])
+        ( [ (A, [Except (Same B, Items[1])])
+          ; (B, [Except (Same A, Items[2])])
+          ; (C, [Except (Same B, Items[3])])
           ; (D, [])
           ; (E, [])
           ]
@@ -67,7 +67,7 @@ module TestEx2: TestEx =
       ; SHOP
         ( [ (A, [Items [1;2]; Common (Same B, Same C)])
           ; (B, [Common (Same C, Items [2;3])])
-          ; (C, [Items [1]; Except (Same A, [3])])
+          ; (C, [Items [1]; Except (Same A, Items [3])])
           ; (D, [])
           ; (E, [])
           ]
@@ -122,10 +122,10 @@ module TestEx2: TestEx =
         )
       ; SHOP
         ( [ (A, [Items [1;2;3;4;5;6;7]])
-          ; (B, [Except (Same A, [1;4])])
-          ; (C, [Except (Same B, [2;3])])
-          ; (D, [Except (Same C, [5;6])])
-          ; (E, [Except (Same D, [7])])
+          ; (B, [Except (Same A, Items[1;4])])
+          ; (C, [Except (Same B, Items[2;3])])
+          ; (D, [Except (Same C, Items[5;6])])
+          ; (E, [Except (Same D, Items[7])])
           ]
         , [ (A, [1;2;3;4;5;6;7])
           ; (B, [2;3;5;6;7])
@@ -135,11 +135,11 @@ module TestEx2: TestEx =
           ]
         )
       ; SHOP
-        ( [ (A, [Items [1; 2; 3]; Except (Items [5; 6; 7], [6]); Common (Same (D), Same (E))])
-          ; (B, [Common (Same (A), Same (B)); Common (Same (B), Same (C)); Except (Same (D), [9])])
-          ; (C, [Common (Same (B), Same (C)); Except (Same (E), [1; 6]); Common (Same (A), Same (D))])
+        ( [ (A, [Items [1; 2; 3]; Except (Items [5; 6; 7], Items[6]); Common (Same (D), Same (E))])
+          ; (B, [Common (Same (A), Same (B)); Common (Same (B), Same (C)); Except (Same (D), Items[9])])
+          ; (C, [Common (Same (B), Same (C)); Except (Same (E), Items[1; 6]); Common (Same (A), Same (D))])
           ; (D, [Items [4; 5; 6; 7; 8; 9; 10]; Same (B); Same (C)])
-          ; (E, [Except (Same (A), [3]); Items [9; 10; 11]; Common (Common (Same (B), Same (D)), Items [1; 2; 3; 4; 5; 6; 7])])
+          ; (E, [Except (Same (A), Items[3]); Items [9; 10; 11]; Common (Common (Same (B), Same (D)), Items [1; 2; 3; 4; 5; 6; 7])])
           ]
         , [ (A, [1; 2; 3; 4; 5; 6; 7; 9; 10; 11])
           ; (B, [2; 4; 5; 6; 7; 8; 10; 11])
@@ -203,11 +203,11 @@ module TestEx2: TestEx =
           ]
         )
       ; SHOP
-        ( [ (A, [Except (Items [3;2;1], [3;2;1])])
-          ; (B, [Except (Items [2;1;3], [])])
-          ; (C, [Except (Items [2;1;3], [1;2;3;4;5;6])])
-          ; (D, [Except (Items [], [2;1;3])])
-          ; (E, [Except (Items [], [])])
+        ( [ (A, [Except (Items [3;2;1], Items[3;2;1])])
+          ; (B, [Except (Items [2;1;3], Items[])])
+          ; (C, [Except (Items [2;1;3], Items[1;2;3;4;5;6])])
+          ; (D, [Except (Items [], Items[2;1;3])])
+          ; (E, [Except (Items [], Items[])])
           ]
         , [ (A, [])
           ; (B, [1; 2; 3])
@@ -218,9 +218,9 @@ module TestEx2: TestEx =
         )
       ; SHOP
         ( [ (A, [Common (Common (Same B, Same C), Common (Same D, Same E))])
-          ; (B, [Common (Same C, Common (Same D, Except (Same E, [5])))])
+          ; (B, [Common (Same C, Common (Same D, Except (Same E, Items[5])))])
           ; (C, [Same D; Items[7;8]])
-          ; (D, [Except (Same E, [1;2;3])])
+          ; (D, [Except (Same E, Items[1;2;3])])
           ; (E, [Items [1;2;3;4;5]])
           ]
         , [ (A, [4])
@@ -232,7 +232,7 @@ module TestEx2: TestEx =
         )
       ; SHOP
         ( [ (A, [Same B; Same C])
-          ; (B, [Except (Same C, [1;2;3]); Same D])
+          ; (B, [Except (Same C, Items[1;2;3]); Same D])
           ; (C, [Items [1;2;3]; Items [3;4;5]; Common (Same A, Items [6;7])])
           ; (D, [Same E])
           ; (E, [Same D; Items[6;8]])
@@ -245,8 +245,8 @@ module TestEx2: TestEx =
           ]
         )
       ; SHOP
-        ( [ (A, [Common (Same B, Common (Except (Items [1;2;3;4;5], [1;3;5]), Same C)); Items [2;4;8]])
-          ; (B, [Except (Except (Except (Same A, [1]),[1;2]),[3]); Items [3;6;9]])
+        ( [ (A, [Common (Same B, Common (Except (Items [1;2;3;4;5], Items[1;3;5]), Same C)); Items [2;4;8]])
+          ; (B, [Except (Except (Except (Same A, Items[1]),Items[1;2]),Items[3]); Items [3;6;9]])
           ; (C, [Same A; Same B; Same D; Same E])
           ; (D, [Items [10]; Common (Same A, Same D); Items [5]])
           ; (E, [Common (Same C, Common (Same A, Common (Same D, Same B)))])
@@ -261,7 +261,7 @@ module TestEx2: TestEx =
       ; SHOP
         ( [ (A, [Items [1;2;3;1;2;3]; Same D; Items [1;2;3;4]])
           ; (D, [Items [5;5;5;5;5]])
-          ; (E, [Except (Items [1;2;3;1;2;3], [1;2;3])])
+          ; (E, [Except (Items [1;2;3;1;2;3], Items[1;2;3])])
           ]
         , [ (A, [1; 2; 3; 4; 5])
           ; (B, [])
@@ -339,11 +339,11 @@ module TestEx2: TestEx =
           ]
         )
       ; SHOP
-        ( [ (A, [Items [1]; Except (Same B, [1])])
-          ; (B, [Items [2]; Except (Same C, [2])])
-          ; (C, [Items [3]; Except (Same D, [3])])
-          ; (D, [Items [4]; Except (Same E, [4])])
-          ; (E, [Items [5]; Except (Same A, [5])])
+        ( [ (A, [Items [1]; Except (Same B, Items[1])])
+          ; (B, [Items [2]; Except (Same C, Items[2])])
+          ; (C, [Items [3]; Except (Same D, Items[3])])
+          ; (D, [Items [4]; Except (Same E, Items[4])])
+          ; (E, [Items [5]; Except (Same A, Items[5])])
           ]
         , [ (A, [1;2;3;4;5])
           ; (B, [1;2;3;4;5])
@@ -355,7 +355,7 @@ module TestEx2: TestEx =
       ; SHOP
         ( [ (A, [Items [1; 2]; Common (Same B, Same C)])
           ; (B, [Common (Same C, Items [2;3])])
-          ; (C, [Items [1]; Except (Same A, [3])])
+          ; (C, [Items [1]; Except (Same A, Items[3])])
           ; (D, [Common (Same A, Same B)])
           ; (E, [Common (Same A, Same C)])
           ]
@@ -375,6 +375,9 @@ module TestEx2: TestEx =
     let string_of_id_tuple string_of_e (x, e) =
       Printf.sprintf "%s: %s" (string_of_id x) (string_of_e e)
 
+    let string_of_list string_of_elem l =
+      "[" ^ (List.map string_of_elem l |> String.concat "; ") ^ "]"
+
     let string_of_int_list = string_of_list string_of_int
 
     let string_of_sum_list string_of_elem l =
@@ -391,7 +394,7 @@ module TestEx2: TestEx =
       | Items gl -> string_of_int_list gl
       | Same x -> string_of_id x
       | Common (c1, c2) -> Printf.sprintf "(%s ∩ %s)" (string_of_cond c1) (string_of_cond c2)
-      | Except (c, gl) -> Printf.sprintf "(%s - %s)" (string_of_cond c) (string_of_int_list gl)
+      | Except (c, Items gl) -> Printf.sprintf "(%s - %s)" (string_of_cond c) (string_of_int_list gl)
 
     let string_of_reqs =
       string_of_list (string_of_id_tuple (string_of_list string_of_cond))
